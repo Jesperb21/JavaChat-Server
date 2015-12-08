@@ -1,50 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" fx:controller="sample.Controller" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1">
-  <MenuBar VBox.vgrow="NEVER">
-    <Menu mnemonicParsing="false" text="File">
-      <MenuItem mnemonicParsing="false" text="Add Channel" onAction="#addChannel"/>
-      <MenuItem mnemonicParsing="false" text="Close Channel" onAction="#closeChannel"/>
-      <SeparatorMenuItem mnemonicParsing="false"/>
-      <MenuItem mnemonicParsing="false" text="Preferences…" onAction="#openPreferences"/>
-      <SeparatorMenuItem mnemonicParsing="false"/>
-      <MenuItem mnemonicParsing="false" text="Quit" onAction="#closeServer"/>
-    </Menu>
-  </MenuBar>
-  <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0"
-             VBox.vgrow="ALWAYS">
-    <AnchorPane>
-      <VBox prefHeight="573.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Label style="-fx-font-size: 20px; -fx-padding: 10" text="Active chatrooms"/>
-
-      <Accordion fx:id="chatList" prefHeight="573.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0"
-                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <panes>
-          <TitledPane animated="false" text="default">
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-              <ListView layoutX="-28.0" layoutY="-44.0" prefHeight="497.0" prefWidth="220.0"
-                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                        AnchorPane.topAnchor="0.0"/>
-            </AnchorPane>
-          </TitledPane>
-        </panes>
-      </Accordion>
-      </VBox>
-    </AnchorPane>
-    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-      <VBox prefHeight="573.0" prefWidth="446.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <TextArea prefHeight="150.0" prefWidth="239.0" VBox.vgrow="ALWAYS"/>
-        <HBox prefHeight="27.0" prefWidth="446.0">
-          <TextField HBox.hgrow="ALWAYS"/>
-          <Button mnemonicParsing="false" text="Send"/>
-        </HBox>
-      </VBox>
-    </AnchorPane>
-  </SplitPane>
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Controller">
+   <children>
+     <MenuBar VBox.vgrow="NEVER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+             <items>
+               <MenuItem mnemonicParsing="false" onAction="#addChannel" text="Add Channel" />
+               <MenuItem mnemonicParsing="false" onAction="#closeChannel" text="Close Channel" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" onAction="#openPreferences" text="Preferences…" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <MenuItem mnemonicParsing="false" onAction="#closeServer" text="Quit" />
+             </items>
+          </Menu>
+        </menus>
+     </MenuBar>
+     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+        <items>
+          <AnchorPane prefWidth="225.0">
+             <children>
+               <VBox prefHeight="573.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                  <Label style="-fx-font-size: 20px; -fx-padding: 10" text="Active chatrooms" />
+            
+                  <Accordion fx:id="chatList" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <panes>
+                      <TitledPane animated="false" text="default">
+                         <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                <ListView layoutX="-28.0" layoutY="-44.0" prefHeight="497.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              </children>
+                           </AnchorPane>
+                         </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+                  </children>
+               </VBox>
+             </children>
+          </AnchorPane>
+          <AnchorPane>
+             <children>
+               <VBox prefHeight="573.0" prefWidth="446.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                    <TextArea prefHeight="150.0" prefWidth="239.0" VBox.vgrow="ALWAYS" />
+                    <HBox prefHeight="27.0" prefWidth="446.0">
+                       <children>
+                         <TextField HBox.hgrow="ALWAYS" />
+                         <Button mnemonicParsing="false" text="Send" />
+                       </children>
+                    </HBox>
+                  </children>
+               </VBox>
+             </children>
+          </AnchorPane>
+        </items>
+     </SplitPane>
+   </children>
 </VBox>

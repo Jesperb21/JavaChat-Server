@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" fx:controller="Controllers.Modals.PrefController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
             <children>
@@ -42,6 +42,10 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </Button>
+            <Button mnemonicParsing="false" text="Close" onAction="#closePref">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
             </children>
         </HBox>
     </children>

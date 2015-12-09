@@ -74,6 +74,7 @@ public class ServerSocketService extends Thread {
         for (Socket s : connections) {
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
             out.writeUTF(parsedPckg);
+            out.flush();
         }
         System.out.println(parsedPckg.concat(" was sent to all client"));
     }

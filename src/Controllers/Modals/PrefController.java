@@ -28,7 +28,7 @@ public class PrefController {
 
             stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(this.stage.getStyle());
             stage.setTitle("ABC");
             stage.setScene(new Scene(root1));
 

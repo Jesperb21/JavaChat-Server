@@ -1,7 +1,7 @@
 package Controllers.Modals;
 
 import Controllers.ControllerMediator;
-import Controllers.ServerSocketController;
+import Services.ServerSocketService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,8 +44,6 @@ public class PrefController {
 
             if (prop.getProperty("Port") != null) {
                 txtPort.setText(prop.getProperty("Port"));
-            } else {
-                //txtPort.setText("4545");
             }
 
 
@@ -62,7 +60,7 @@ public class PrefController {
         System.out.println(prop.getProperty("Port"));
 
         try {
-            Thread t = new ServerSocketController(prop.getProperty("Port"));
+            Thread t = new ServerSocketService(prop.getProperty("Port"));
             t.start();
         } catch (IOException e) {
             e.printStackTrace();

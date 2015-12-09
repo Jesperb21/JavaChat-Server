@@ -24,6 +24,7 @@ public class Controller {
         mediator.chatPanelController.addChannel();
     }
 
+    //todo change it so that each channel has a close button in the ChatPanel, then call closeChannel from there
     public void closeChannel() {
         ChatChannelController channel = mediator.chatChannelControllers.get(0);
         mediator.chatPanelController.closeChannel(channel);

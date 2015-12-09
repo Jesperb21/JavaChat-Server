@@ -14,7 +14,6 @@ import java.io.IOException;
  * Created by JesperB on 09-12-2015.
  */
 public class ChatPanelController {
-
     public Accordion chatList;
 
     public ChatPanelController() {
@@ -32,6 +31,6 @@ public class ChatPanelController {
     }
     public void closeChannel(ChatChannelController channel){
         ControllerMediator.getInstance().chatChannelControllers.remove(channel);
-        chatList.getPanes().remove(channel);
+        chatList.getPanes().remove(channel.ChatChannelPane);
     }
 }

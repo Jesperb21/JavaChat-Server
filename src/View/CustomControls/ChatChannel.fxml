@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ListView?>
 
 
-<TitledPane animated="false"
+<TitledPane animated="false" fx:controller="Controllers.CustomControls.Chat.ChatChannelController"
             prefWidth="200.0" text="untitled"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http:javafx.com/fxml/1">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">

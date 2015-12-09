@@ -1,5 +1,6 @@
-package Controllers.CustomControls;
+package Controllers.CustomControls.Chat;
 
+import Controllers.Controller;
 import Controllers.ControllerMediator;
 
 /**
@@ -7,5 +8,6 @@ import Controllers.ControllerMediator;
  */
 public class ChatChannelController {
     public ChatChannelController() {
+        ControllerMediator.getInstance().chatChannelControllers.add(this);
     }
 }

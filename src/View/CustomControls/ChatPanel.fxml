@@ -5,16 +5,8 @@
 <?import javafx.scene.layout.*?>
 
 <Accordion fx:id="chatList" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-           AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomControls.ChatPanelController">
+           AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomControls.Chat.ChatPanelController">
     <panes>
-        <TitledPane animated="false" text="default">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="100.0" prefWidth="200.0">
-                    <children>
-                        <ListView layoutX="-28.0" layoutY="-44.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                    </children>
-                </AnchorPane>
-            </content>
-        </TitledPane>
+        <fx:include source="ChatChannel.fxml" />
     </panes>
 </Accordion>

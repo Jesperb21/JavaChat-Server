@@ -1,7 +1,9 @@
 package Controllers;
 
+import Controllers.CustomControls.ChatPanelController;
 import Controllers.Modals.PrefController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,11 +16,10 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class Controller {
-
     public Accordion chatList;
 
     public Controller(){
-
+        ControllerMediator.getInstance().mainController = this;
     }
 
     //region actions that buttons are mapped to
@@ -27,7 +28,7 @@ public class Controller {
 
     public void addChannel(){
         try {
-            TitledPane channel = FXMLLoader.load(getClass().getResource("../View/CustomControls/ChatPanel.fxml"));
+            TitledPane channel = FXMLLoader.load(getClass().getResource("../View/CustomControls/ChatChannel.fxml"));
 
             chatList.getPanes().add(channel);
 

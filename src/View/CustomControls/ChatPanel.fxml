@@ -4,10 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" prefHeight="400.0" prefWidth="600.0" text="untitled"
-            xmlns="http://javafx.com/javafx/8">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <ListView prefHeight="374.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-    </AnchorPane>
-</TitledPane>
+<Accordion fx:id="chatList" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+           AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomControls.ChatPanelController">
+    <panes>
+        <TitledPane animated="false" text="default">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="100.0" prefWidth="200.0">
+                    <children>
+                        <ListView layoutX="-28.0" layoutY="-44.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+    </panes>
+</Accordion>

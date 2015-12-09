@@ -1,5 +1,6 @@
 package Controllers.Modals;
 
+import Controllers.ControllerMediator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,11 +15,11 @@ import java.io.IOException;
  * Created by JesperB on 08-12-2015.
  */
 public class PrefController {
-    private Stage stage;
 
-    public void closePref(ActionEvent event) {
-        stage.close();
+    public PrefController() {
+        ControllerMediator.getInstance().prefController = this;
     }
+
     public void openPref(){
         try {
 
@@ -26,9 +27,9 @@ public class PrefController {
             Parent root1 = null;
             root1 = (Parent) fxmlLoader.load();
 
-            stage = new Stage();
+            Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(this.stage.getStyle());
+            stage.initStyle(StageStyle.UTILITY);
             stage.setTitle("ABC");
             stage.setScene(new Scene(root1));
 

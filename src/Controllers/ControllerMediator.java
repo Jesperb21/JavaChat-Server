@@ -1,11 +1,10 @@
 package Controllers;
 
-import Controllers.CustomControls.Chat.ChatChannelController;
-import Controllers.CustomControls.Chat.ChatPanelController;
+import Controllers.Chat.ChatChannelController;
+import Controllers.Chat.ChatPanelController;
 import Controllers.Modals.PrefController;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by JesperB on 09-12-2015.

@@ -1,9 +1,6 @@
-package Controllers.CustomControls.Chat;
+package Controllers.Chat;
 
-import Controllers.Controller;
 import Controllers.ControllerMediator;
-import javafx.beans.binding.StringBinding;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;

@@ -40,11 +40,11 @@
              <children>
                <VBox prefHeight="573.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
-                    <TextArea editable="false" prefHeight="150.0" prefWidth="239.0" VBox.vgrow="ALWAYS" />
+                    <TextArea fx:id="ChatTextArea" editable="false" prefHeight="150.0" prefWidth="239.0" VBox.vgrow="ALWAYS" />
                     <HBox prefHeight="27.0" prefWidth="446.0">
                        <children>
-                         <TextField HBox.hgrow="ALWAYS" />
-                         <Button mnemonicParsing="false" text="Send" />
+                         <TextField fx:id="ChatMessageArea" HBox.hgrow="ALWAYS" />
+                         <Button mnemonicParsing="false" fx:id="ChatSendButton" text="Send" />
                        </children>
                     </HBox>
                   </children>

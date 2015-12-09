@@ -1,6 +1,5 @@
-package Controllers.CustomControls.Chat;
+package Controllers.Chat;
 
-import Controllers.Controller;
 import Controllers.ControllerMediator;
 import javafx.scene.control.TitledPane;
 

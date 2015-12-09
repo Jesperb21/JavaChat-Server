@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.Chat.ChatChannelController;
+import Controllers.Chat.ChatController;
 import Controllers.Chat.ChatPanelController;
 import Controllers.Modals.PrefController;
 
@@ -20,7 +21,11 @@ public class ControllerMediator {
     //endregion
 
     public Controller mainController;
-    public ChatPanelController chatPanelController;
     public PrefController prefController;
+
+    //chat controllers
+    public ChatPanelController chatPanelController;
+    public ChatController chatController;
     public ArrayList<ChatChannelController> chatChannelControllers = new ArrayList<>();
+
 }

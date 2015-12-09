@@ -1,11 +1,10 @@
 package Controllers.Modals;
 
 import Controllers.ControllerMediator;
-import Services.ReadXMLFile;
 import Services.ServerSocketService;
-import Services.XMLStorage;
-import javafx.event.ActionEvent;
+import Services.XML.XMLHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -14,20 +13,34 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.Properties;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by JesperB on 08-12-2015.
  */
-public class PrefController {
+public class PrefController implements Initializable{
 
     public TextField txtPort;
+
     public int Port = 0;
+
 
     public PrefController() {
         ControllerMediator.getInstance().prefController = this;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getPortFromXml();
+        txtPort.setText(String.valueOf(Port));
+    }
+
+
+    //todo move this to a menubar controller
+    /**
+     * open a preferences modal
+     */
     public void openPref() {
         try {
 
@@ -42,31 +55,32 @@ public class PrefController {
             stage.setScene(new Scene(root1));
 
             stage.show();
-
-            ReadXMLFile ReadXML = new ReadXMLFile();
-            Port = Integer.parseInt(ReadXML.ReadXMLFile());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void StartServer(ActionEvent actionEvent) {
+    private void getPortFromXml(){
+        XMLHandler xmlHandler = new XMLHandler();
+        Port = xmlHandler.readPortFromXML();
+    }
 
-        txtPort.setText(Integer.toString(Port));
+    public void StartServer() {
+        // get port from txtfield
+        Port = Integer.parseInt(txtPort.getText());
 
-        if (Port == 0) {
-            XMLStorage xml = new XMLStorage();
-            xml.XMLStorage(txtPort.getText());
-        }
+        //save port to xml
+        XMLHandler xmlHandler = new XMLHandler();
+        xmlHandler.WritePortToXML(Port);
 
         try {
-            Thread t = new ServerSocketService(Port);
-            t.start();
+            ServerSocketService s = new ServerSocketService(Port);
+            s.StartListening();
 
             System.out.println("Server started on port: " + Port);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

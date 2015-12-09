@@ -1,7 +1,9 @@
-package Services;
+package Services.XML;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,10 +16,46 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 
 /**
- * Created by jan on 09-12-2015.
+ * Created by JesperB on 09-12-2015.
+ * ...todo look over how jakob wrote ReadXMLFile and storePort
  */
-public class XMLStorage {
-    public void XMLStorage(String Port) {
+public class XMLHandler {
+    public void WritePortToXML(Integer Port){
+        storePort(Port.toString());
+    }
+    public int readPortFromXML(){
+        return Integer.parseInt(ReadXMLFile());
+    }
+
+
+    private String ReadXMLFile() {
+
+        String test = "";
+
+        try {
+            File inputFile = new File("C:\\File.xml");
+            DocumentBuilderFactory dbFactory
+                    = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("Properties");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node nNode = nList.item(temp);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    test = eElement.getElementsByTagName("Port").item(0).getTextContent();
+                    System.out.println(eElement.getElementsByTagName("Port").item(0).getTextContent());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return test;
+    }
+    private void storePort(String Port) {
 
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -46,10 +84,8 @@ public class XMLStorage {
 
             System.out.println("File saved!");
 
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
         }
     }
 }

@@ -1,8 +1,10 @@
 package Controllers;
 
-import Controllers.CustomControls.ChatPanelController;
+import Controllers.CustomControls.Chat.ChatChannelController;
+import Controllers.CustomControls.Chat.ChatPanelController;
 import Controllers.Modals.PrefController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,5 +23,5 @@ public class ControllerMediator {
     public Controller mainController;
     public ChatPanelController chatPanelController;
     public PrefController prefController;
-
+    public ArrayList<ChatChannelController> chatChannelControllers = new ArrayList<>();
 }

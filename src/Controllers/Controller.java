@@ -1,25 +1,19 @@
 package Controllers;
 
-import Controllers.CustomControls.ChatPanelController;
+import Controllers.CustomControls.Chat.ChatChannelController;
 import Controllers.Modals.PrefController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class Controller {
-    public Accordion chatList;
+    ControllerMediator mediator = ControllerMediator.getInstance();
 
     public Controller(){
-        ControllerMediator.getInstance().mainController = this;
+        mediator.mainController = this;
     }
 
     //region actions that buttons are mapped to
@@ -27,21 +21,12 @@ public class Controller {
     //region channels actions
 
     public void addChannel(){
-        try {
-            TitledPane channel = FXMLLoader.load(getClass().getResource("../View/CustomControls/ChatChannel.fxml"));
-
-            chatList.getPanes().add(channel);
-
-            System.out.println("Channel Added!");
-
-        } catch (IOException e) {
-            System.out.println("Channel was not added :(");
-            e.printStackTrace();
-        }
+        mediator.chatPanelController.addChannel();
     }
 
     public void closeChannel() {
-        System.out.println("Channel Closed!");
+        ChatChannelController channel = mediator.chatChannelControllers.get(0);
+        mediator.chatPanelController.closeChannel(channel);
     }
 
     //endregion

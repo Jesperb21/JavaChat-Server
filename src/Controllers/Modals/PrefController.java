@@ -1,7 +1,9 @@
 package Controllers.Modals;
 
 import Controllers.ControllerMediator;
+import Services.ReadXMLFile;
 import Services.ServerSocketService;
+import Services.XMLStorage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +22,7 @@ import java.util.Properties;
 public class PrefController {
 
     public TextField txtPort;
+    public int Port = 0;
 
     public PrefController() {
         ControllerMediator.getInstance().prefController = this;
@@ -35,17 +38,13 @@ public class PrefController {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UTILITY);
-            stage.setTitle("ABC");
+            stage.setTitle("Preferences");
             stage.setScene(new Scene(root1));
 
             stage.show();
 
-            Properties prop = new Properties();
-
-            if (prop.getProperty("Port") != null) {
-                txtPort.setText(prop.getProperty("Port"));
-            }
-
+            ReadXMLFile ReadXML = new ReadXMLFile();
+            Port = Integer.parseInt(ReadXML.ReadXMLFile());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,15 +52,19 @@ public class PrefController {
     }
 
     public void StartServer(ActionEvent actionEvent) {
-        txtPort.setText("4545");
 
-        Properties prop = new Properties();
-        prop.setProperty("Port", String.valueOf(txtPort.getText()));
-        System.out.println(prop.getProperty("Port"));
+        txtPort.setText(Integer.toString(Port));
+
+        if (Port == 0) {
+            XMLStorage xml = new XMLStorage();
+            xml.XMLStorage(txtPort.getText());
+        }
 
         try {
-            Thread t = new ServerSocketService(prop.getProperty("Port"));
+            Thread t = new ServerSocketService(Port);
             t.start();
+
+            System.out.println("Server started on port: " + Port);
         } catch (IOException e) {
             e.printStackTrace();
         }

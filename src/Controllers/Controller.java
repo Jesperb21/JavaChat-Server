@@ -37,9 +37,7 @@ public class Controller {
 
         PrefController prefCtrl = new PrefController();
         prefCtrl.openPref();
-
-        System.out.println("Preference Modal Opened! :D...wait no");
-
+        System.out.println("Preference Modal Opened");
     }
 
     public void closeServer() {

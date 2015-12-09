@@ -13,8 +13,8 @@ import java.net.SocketTimeoutException;
 public class ServerSocketService extends Thread {
     private ServerSocket serverSocket;
 
-    public ServerSocketService(String Port) throws IOException {
-        serverSocket = new ServerSocket(Integer.parseInt(Port));
+    public ServerSocketService(int Port) throws IOException {
+        serverSocket = new ServerSocket(Port);
         serverSocket.setSoTimeout(0);
 
     }

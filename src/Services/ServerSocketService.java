@@ -1,4 +1,4 @@
-package Controllers;
+package Services;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,10 +10,10 @@ import java.net.SocketTimeoutException;
 /**
  * Created by jan on 09-12-2015.
  */
-public class ServerSocketController extends Thread {
+public class ServerSocketService extends Thread {
     private ServerSocket serverSocket;
 
-    public ServerSocketController(String Port) throws IOException {
+    public ServerSocketService(String Port) throws IOException {
         serverSocket = new ServerSocket(Integer.parseInt(Port));
         serverSocket.setSoTimeout(0);
 

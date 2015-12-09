@@ -27,7 +27,7 @@
                <VBox prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
                     <Label style="-fx-font-size: 20px; -fx-padding: 10" text="Active chatrooms" />
-                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true">
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minHeight="1">
                            <content>
                           <fx:include fx:id="chatList" source="CustomControls/ChatPanel.fxml" />
                            </content>

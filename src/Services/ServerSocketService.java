@@ -18,7 +18,7 @@ import org.json.simple.parser.ParseException;
 /**
  * Created by jan on 09-12-2015.
  */
-public class ServerSocketService extends Thread {
+public class ServerSocketService extends BaseSocketService {
     private ServerSocket serverSocket;
     private ArrayList<Socket> connections = new ArrayList<>();
 
@@ -68,6 +68,18 @@ public class ServerSocketService extends Thread {
         }
     }
 
+
+    //todo do package transfer for server socket
+    //region package transfer
+
+    public void SendMsg(String Msg){
+
+    }
+
+    public void StopServer(){
+
+    }
+
     private void repeatPackage(IPackageBase pckg) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         String parsedPckg = (String) parser.parse(pckg.toString());
@@ -78,4 +90,6 @@ public class ServerSocketService extends Thread {
         }
         System.out.println(parsedPckg.concat(" was sent to all client"));
     }
+
+    //endregion
 }

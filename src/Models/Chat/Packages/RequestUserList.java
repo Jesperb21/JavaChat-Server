@@ -13,7 +13,6 @@ public class RequestUserList implements IPackageBase {
     public RequestUserList(ArrayList<String> users) {
         Users = users;
     }
-
     @Override
     public PackageType getPackageType() {
         return PackageType.RequestUserList;

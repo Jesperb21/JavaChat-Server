@@ -43,6 +43,7 @@ public class ServerSocketService implements ISocketService{
             connections.add(conn);
 
             Thread connectionThread = new Thread(new handlerThread(conn));
+            connectionThread.start();
 
         } catch (SocketTimeoutException s) {
             System.out.println("Socket timed out..");
@@ -58,7 +59,7 @@ public class ServerSocketService implements ISocketService{
         Gson g = new Gson();
 
 //        System.out.println(in.readUTF());
-        Object obj = g.fromJson(in.readUTF(), IPackageBase.class);
+        Object obj = g.fromJson(in.readUTF(), LoginPackage.class);
         IPackageBase pckg =  (IPackageBase) obj;
         handleReceivedPackage(pckg);
     }
@@ -77,6 +78,7 @@ public class ServerSocketService implements ISocketService{
                 SendMsg("Notification",li_pckg.getName()
                         .concat(" has joined ")
                         .concat(li_pckg.getRoomName()));
+                System.out.println("LoginPackage Received from ".concat(li_pckg.getName()));
                 repeatPackage(li_pckg);
                 break;
             case LogoutPackage:
@@ -85,11 +87,15 @@ public class ServerSocketService implements ISocketService{
                 SendMsg("Notification",lo_pckg.getName()
                         .concat(" has left ")
                         .concat(lo_pckg.getRoomName()));
+                System.out.println("LogoutPackage Received from ".concat(lo_pckg.getName()));
                 break;
             case MessagePackage:
                 repeatPackage(pckg);
+                MessagePackage msgPckg = (MessagePackage) pckg;
+                mediator.channels.get(msgPckg.getRoomName()).addMessage(msgPckg);
                 break;
             case RequestUserList:
+
                 break;
         }
         repeatPackage(pckg);
@@ -146,6 +152,21 @@ public class ServerSocketService implements ISocketService{
     public void StartListening() {
         Thread t = new Thread(this::run);
         t.start();
+        Thread tt = new Thread(() -> new Runnable(){
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(10000);
+                        SendMsg("debug msg!");
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        tt.start();
     }
 
     private class handlerThread implements Runnable {

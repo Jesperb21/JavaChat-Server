@@ -29,14 +29,14 @@ public class PrefController implements Initializable{
     public int Port = 0;
     public String FilePath = System.getProperty("user.dir");
 
-    /*
-     * Get the prefcontroller
+    /**
+     * Get the properties of prefcontroller
      */
     public PrefController() {
         ControllerMediator.getInstance().prefController = this;
     }
 
-    /*
+    /**
      * Get and set the port, if there isn
      */
     @Override
@@ -68,11 +68,17 @@ public class PrefController implements Initializable{
         }
     }
 
+    /**
+     * Get port from properties file
+     */
     private void getPortFromXml(){
         XMLHandler xmlHandler = new XMLHandler();
         Port = xmlHandler.readPortFromXML();
     }
 
+    /**
+     * Starting server on user specified port
+     */
     public void StartServer() {
         // get port from txtfield
         Port = Integer.parseInt(txtPort.getText());
@@ -91,7 +97,9 @@ public class PrefController implements Initializable{
         }
     }
 
-
+    /**
+     * Save chat text to log file
+     */
     public void SaveLog() {
         Logger logger = Logger.getLogger("MyLog");
         FileHandler fh;

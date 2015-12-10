@@ -1,8 +1,8 @@
 package Services;
 
-import Models.Chat.Packages.IPackageBase;
-import Models.Chat.Packages.MessagePackage;
-import Models.Chat.Packages.ServerStop;
+import Controllers.ControllerMediator;
+import Models.Chat.Packages.*;
+import com.google.gson.Gson;
 
 import javax.activation.FileDataSource;
 import java.io.DataInputStream;
@@ -15,10 +15,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Controllers.ControllerMediator;
-import Models.Chat.Packages.*;
-import com.google.gson.Gson;
-
 
 /**
  * Created by jan on 09-12-2015.
@@ -27,16 +23,18 @@ public class ServerSocketService implements ISocketService{
     private ServerSocket serverSocket;
     private ArrayList<Socket> connections = new ArrayList<>();
 
-
-    // set server socket with port and no timeout
+    /**
+     * set server socket with port and no timeout
+     */
     public ServerSocketService(int Port) throws IOException {
         ControllerMediator.getInstance().SSS = this;
         serverSocket = new ServerSocket(Port);
         serverSocket.setSoTimeout(0);
-
     }
 
-    // run socket in new thread and wait for clients to connect
+    /**
+     * run socket in new thread and wait for clients to connect
+     */
     private void run () {
         while (true) try {
             System.out.println("Waiting for client...");

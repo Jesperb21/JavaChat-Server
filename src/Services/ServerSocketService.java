@@ -59,9 +59,13 @@ public class ServerSocketService implements ISocketService{
         Gson g = new Gson();
 
 //        System.out.println(in.readUTF());
-        Object obj = g.fromJson(in.readUTF(), LoginPackage.class);
+        String inText = in.readUTF();
+        Object obj = g.fromJson(inText, LoginPackage.class);
         IPackageBase pckg =  (IPackageBase) obj;
+
         handleReceivedPackage(pckg);
+
+        String stop = "Here";
     }
 
 
@@ -71,6 +75,7 @@ public class ServerSocketService implements ISocketService{
     private void handleReceivedPackage(IPackageBase pckg){
         ControllerMediator mediator = ControllerMediator.getInstance();
 
+        //It "dies" somewhere in here...
         switch (pckg.getPackageType()){
             case LoginPackage:
                 LoginPackage li_pckg = (LoginPackage)pckg;

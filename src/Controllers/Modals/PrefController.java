@@ -30,7 +30,7 @@ public class PrefController implements Initializable{
     public String FilePath = System.getProperty("user.dir");
 
     /*
-     * Get the prefcontroller
+     * Get the properties of prefcontroller
      */
     public PrefController() {
         ControllerMediator.getInstance().prefController = this;

@@ -1,5 +1,11 @@
 package Services;
 
+import Models.Chat.Packages.IPackageBase;
+import Models.Chat.Packages.MessagePackage;
+import Models.Chat.Packages.ServerStop;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.activation.FileDataSource;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,13 +16,6 @@ import java.net.SocketTimeoutException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import Models.Chat.Packages.IPackageBase;
-import Models.Chat.Packages.MessagePackage;
-import Models.Chat.Packages.ServerStop;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 
 /**
@@ -26,12 +25,15 @@ public class ServerSocketService implements ISocketService{
     private ServerSocket serverSocket;
     private ArrayList<Socket> connections = new ArrayList<>();
 
+
+    // set server socket with port and no timeout
     public ServerSocketService(int Port) throws IOException {
         serverSocket = new ServerSocket(Port);
         serverSocket.setSoTimeout(0);
 
     }
 
+    // run socket in new thread and wait for clients to connect
     private void run () {
         while (true) try {
             System.out.println("Waiting for client...");
@@ -47,6 +49,7 @@ public class ServerSocketService implements ISocketService{
             break;
         }
     }
+
     private void handleStream(FileDataSource server) throws IOException {
         JSONParser parser = new JSONParser();
 

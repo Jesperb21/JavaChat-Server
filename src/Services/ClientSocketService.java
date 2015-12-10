@@ -3,16 +3,12 @@ package Services;
 import Models.Chat.Packages.IPackageBase;
 import Models.Chat.Packages.MessagePackage;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.file.SecureDirectoryStream;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ClientSocketService implements ISocketService{
     private Socket socket;
@@ -48,7 +44,7 @@ public class ClientSocketService implements ISocketService{
             out.writeUTF(parsedPckg);
             out.flush();
 
-        } catch (ParseException | IOException e) {
+        } catch (IOException | org.json.simple.parser.ParseException e) {
             e.printStackTrace();
         }
     }

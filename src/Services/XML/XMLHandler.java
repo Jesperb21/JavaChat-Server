@@ -39,6 +39,7 @@ public class XMLHandler {
         try {
             File inputFile = new File(FilePath + "\\" + FileName);
             if (inputFile.createNewFile()){
+                storePort("34000");
                 System.out.println("File is created!");
             }else{
                 System.out.println("File already exists.");

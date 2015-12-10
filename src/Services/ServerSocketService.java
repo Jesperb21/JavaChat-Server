@@ -44,6 +44,8 @@ public class ServerSocketService implements ISocketService{
             System.out.println("Client has connected: " + conn.getRemoteSocketAddress());
             connections.add(conn);
 
+            Thread connectionThread = new Thread(new handlerThread(conn));
+
         } catch (SocketTimeoutException s) {
             System.out.println("Socket timed out..");
             break;
@@ -53,10 +55,10 @@ public class ServerSocketService implements ISocketService{
         }
     }
 
-    private void handleStream(FileDataSource server) throws IOException {
+
+    private void handleStream(DataInputStream in) throws IOException {
         Gson g = new Gson();
 
-        DataInputStream in = new DataInputStream(server.getInputStream());
 //        System.out.println(in.readUTF());
         Object obj = g.fromJson(in.readUTF(), IPackageBase.class);
         IPackageBase pckg =  (IPackageBase) obj;
@@ -73,7 +75,7 @@ public class ServerSocketService implements ISocketService{
         switch (pckg.getPackageType()){
             case LoginPackage:
                 LoginPackage li_pckg = (LoginPackage)pckg;
-                mediator.channels.get(li_pckg.getRoomName()).Users.add(li_pckg.getName());
+                mediator.channels.get(li_pckg.getRoomName()).adduser(li_pckg.getName());
                 SendMsg("Notification",li_pckg.getName()
                         .concat(" has joined ")
                         .concat(li_pckg.getRoomName()));
@@ -81,7 +83,7 @@ public class ServerSocketService implements ISocketService{
                 break;
             case LogoutPackage:
                 LogoutPackage lo_pckg = (LogoutPackage)pckg;
-                mediator.channels.get(lo_pckg.getRoomName()).Users.add(lo_pckg.getName());
+                mediator.channels.get(lo_pckg.getRoomName()).adduser(lo_pckg.getName());
                 SendMsg("Notification",lo_pckg.getName()
                         .concat(" has left ")
                         .concat(lo_pckg.getRoomName()));
@@ -146,6 +148,24 @@ public class ServerSocketService implements ISocketService{
     public void StartListening() {
         Thread t = new Thread(this::run);
         t.start();
+    }
+
+    private class handlerThread implements Runnable {
+        private Socket conn;
+        public handlerThread(Socket conn) {
+            this.conn = conn;
+        }
+
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    handleStream(new DataInputStream(conn.getInputStream()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     //endregion

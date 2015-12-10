@@ -2,7 +2,10 @@ package Controllers.Chat;
 
 import Controllers.ControllerMediator;
 import Models.Chat.Packages.MessagePackage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 
 import java.net.URL;
@@ -14,8 +17,11 @@ import java.util.ResourceBundle;
  */
 public class ChatChannelController implements Initializable{
     public TitledPane ChatChannelPane;
+    public ListView UsersList;
+
     private String name;
-    public ArrayList<String> Users = new ArrayList<>();
+    private ArrayList<String> Users = new ArrayList<>();
+    public ObservableList<String> UsersObservable = FXCollections.observableArrayList();
     public ArrayList<String> Messages = new ArrayList<>();
 
     public ChatChannelController(){}
@@ -36,5 +42,14 @@ public class ChatChannelController implements Initializable{
                         .concat(msgPackage.getMessage())
                         .concat("\n"));
     }
-
+    public void adduser(String User){
+        Users.add(User);
+        UsersList.setItems(UsersObservable);
+    }
+    public void removeUser(String User){
+        Users.remove(User);
+    }
+    public ArrayList<String> getUsers(){
+        return Users;
+    }
 }

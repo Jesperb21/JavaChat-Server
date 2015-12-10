@@ -19,10 +19,8 @@ public class Controller{
     //region channels actions
 
     public void addChannel(){
-        Random random = new Random();
-        byte[] randomBytes = new byte[256];
-        random.nextBytes(randomBytes);
-        mediator.chatPanelController.addChannel(randomBytes.toString());
+        String roomName = "Default".concat(Integer.toString(mediator.channels.size()));
+        mediator.chatPanelController.addChannel(roomName);
     }
 
     //todo change it so that each channel has a close button in the ChatPanel, then call closeChannel from there

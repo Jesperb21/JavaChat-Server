@@ -25,15 +25,17 @@ public class ServerSocketService implements ISocketService{
     private ServerSocket serverSocket;
     private ArrayList<Socket> connections = new ArrayList<>();
 
-
-    // set server socket with port and no timeout
+    /*
+     * set server socket with port and no timeout
+     */
     public ServerSocketService(int Port) throws IOException {
         serverSocket = new ServerSocket(Port);
         serverSocket.setSoTimeout(0);
-
     }
 
-    // run socket in new thread and wait for clients to connect
+    /*
+     * run socket in new thread and wait for clients to connect
+     */
     private void run () {
         while (true) try {
             System.out.println("Waiting for client...");

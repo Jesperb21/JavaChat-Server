@@ -17,7 +17,6 @@ import java.io.File;
 
 /**
  * Created by JesperB on 09-12-2015.
- * ...todo look over how jakob wrote ReadXMLFile and storePort
  */
 public class XMLHandler {
     public void WritePortToXML(Integer Port) {
@@ -31,7 +30,9 @@ public class XMLHandler {
     public String FileName = "Properties.xml";
     public String FilePath = System.getProperty("user.dir");
 
-
+    /*
+     * Read port from XML file, if it doesn't exist then create the file.
+     */
     private String ReadXMLFile() {
 
         String test = "";
@@ -66,6 +67,9 @@ public class XMLHandler {
     return test;
     }
 
+    /*
+     * Add the user specified port til the XML file
+     */
     private void storePort(String Port) {
 
         try {
@@ -87,9 +91,6 @@ public class XMLHandler {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(FilePath + "\\" + FileName));
-
-            // Output to console for testing
-            // StreamResult result = new StreamResult(System.out);
 
             transformer.transform(source, result);
 
